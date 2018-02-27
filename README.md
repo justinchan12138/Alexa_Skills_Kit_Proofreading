@@ -1,4 +1,5 @@
 Alexa_Skills_Kit_Proofreading
+
 This is a simple Alexa Skills Kit that proofreads English sentences and paragraphs.
 
 To open this application, say: Alexa, open profreading
