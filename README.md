@@ -29,6 +29,7 @@ app.setHandler({
 
 > 🚀 Join our newsletter for free courses on voice app development: www.jovo.tech/newsletter 
 
+<<<<<<< HEAD
 ## Table of Contents
 
 * [Getting Started](#getting-started)
@@ -85,6 +86,66 @@ const app = new App(config);
 app.setHandler({
     'LAUNCH': function() {
         this.toIntent('HelloWorldIntent');
+=======
+```
+{
+  "session": {
+    "new": true,
+    "sessionId": "SessionId.38d6325f-6dc8-4e47-b1f3-e893ccfc558a",
+    "application": {
+      "applicationId": "amzn1.ask.skill.b67b3290-34d1-4157-90d6-b0f9fbaffb1f"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.AFGAUEZBLOXANWVPXKQPYF6MZWFIEIKEF5DXPTQ3FESODEVTCRFXQUE44XQAA5KRXF4Q3APPSITTPKFFOHKJMLOY5XKRHVMGJ66ZIMXA7J7R5KEBEQRQQXGMFZVLTKKDKHH4XV36YRI2YH2SRBIO6CVIAEHLDWMIQ7PFDGR5ASDJAI7QIROTKEHC3RSDKVTIFDLM3MU2PY44GIQ"
+    }
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.e8eda006-c618-4e69-8a3b-15d7aa54da3c",
+    "intent": {
+      "name": "ProofreadIntent",
+      "slots": {
+        "sentence": {
+          "name": "sentence",
+          "value": "today are very weid"
+        }
+      }
+    },
+    "locale": "en-US",
+    "timestamp": "2018-02-05T03:12:19Z"
+  },
+  "context": {
+    "AudioPlayer": {
+      "playerActivity": "IDLE"
+    },
+    "System": {
+      "application": {
+        "applicationId": "amzn1.ask.skill.b67b3290-34d1-4157-90d6-b0f9fbaffb1f"
+      },
+      "user": {
+        "userId": "amzn1.ask.account.AFGAUEZBLOXANWVPXKQPYF6MZWFIEIKEF5DXPTQ3FESODEVTCRFXQUE44XQAA5KRXF4Q3APPSITTPKFFOHKJMLOY5XKRHVMGJ66ZIMXA7J7R5KEBEQRQQXGMFZVLTKKDKHH4XV36YRI2YH2SRBIO6CVIAEHLDWMIQ7PFDGR5ASDJAI7QIROTKEHC3RSDKVTIFDLM3MU2PY44GIQ"
+      },
+      "device": {
+        "supportedInterfaces": {}
+      }
+    }
+  },
+  "version": "1.0"
+} 
+
+```
+
+
+Service Request (Example):
+```
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "text": "I have sent the correction to the alexa application on your phone. Thank you for using this application.",
+      "type": "PlainText"
+>>>>>>> 24262f3c3bbfa1b1fb3578e6cfbdd1a5c40c438c
     },
 
     'HelloWorldIntent': function() {
@@ -162,6 +223,9 @@ if (app.isWebhook()) {
         app.handleWebhook(req, res);
     });
 }
+```
+
+Update: I have extended the project usnig the Jovo framwork, which means that the application is now cross-platform (can be run on both the Alexa and Google home platforms). Some minor bugs were fixed as well.
 
 exports.handler = (event, context, callback) => {
     app.handleLambda(event, context, callback);
