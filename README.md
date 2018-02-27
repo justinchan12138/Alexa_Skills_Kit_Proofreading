@@ -9,7 +9,6 @@ The application will send the correction(s) to the Alexa app on your phone (In t
 
 You do not need an API key to use this application. The API I used in this app (http://wiki.languagetool.org/public-http-api) is a free service. I also used AWS lambda to run the code.
 
-proofread-pic
 
 Service Requestion (Example):
 
@@ -61,26 +60,12 @@ Service Requestion (Example):
 
 Service Request (Example):
 
-{
-  "version": "1.0",
-  "response": {
-    "outputSpeech": {
-      "text": "I have sent the correction to the alexa application on your phone. Thank you for using this application.",
-      "type": "PlainText"
-    },
-    "card": {
-      "content": "->This sentence does not start with an uppercase letter\n->Possible spelling mistake found\n",
-      "title": "Correction of: today are very weid"
-    },
-    "reprompt": {
+  {
+    "version": "1.0",
+    "response": {
       "outputSpeech": {
-        "text": "is there anything that I can help you?",
+        "text": "I have sent the correction to the alexa application on your phone. Thank you for using this application.",
         "type": "PlainText"
-      }
-    },
-    "speechletResponse": {
-      "outputSpeech": {
-        "text": "I have sent the correction to the alexa application on your phone. Thank you for using this application."
       },
       "card": {
         "content": "->This sentence does not start with an uppercase letter\n->Possible spelling mistake found\n",
@@ -88,12 +73,28 @@ Service Request (Example):
       },
       "reprompt": {
         "outputSpeech": {
-          "text": "is there anything that I can help you?"
+          "text": "is there anything that I can help you?",
+          "type": "PlainText"
         }
       },
-      "shouldEndSession": false
-    }
-  },
-  "sessionAttributes": {}
-}
+      "speechletResponse": {
+        "outputSpeech": {
+          "text": "I have sent the correction to the alexa application on your phone. Thank you for using this application."
+        },
+        "card": {
+          "content": "->This sentence does not start with an uppercase letter\n->Possible spelling mistake found\n",
+          "title": "Correction of: today are very weid"
+        },
+        "reprompt": {
+          "outputSpeech": {
+            "text": "is there anything that I can help you?"
+          }
+        },
+        "shouldEndSession": false
+      }
+    },
+    "sessionAttributes": {}
+  }
+
+
 Update: I have extended the project usnig the Jovo framwork, which means that the application is now cross-platform (can be run on both the Alexa and Google home platforms). Some minor bugs were fixed as well.
