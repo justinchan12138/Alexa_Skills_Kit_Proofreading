@@ -12,7 +12,7 @@ You do not need an API key to use this application. The API I used in this app (
 
 Service Requestion (Example):
 
-'''
+```
 {
   "session": {
     "new": true,
@@ -58,10 +58,10 @@ Service Requestion (Example):
   },
   "version": "1.0"
 } 
-'''
+```
 
 Service Request (Example):
-
+```
   {
     "version": "1.0",
     "response": {
@@ -97,6 +97,6 @@ Service Request (Example):
     },
     "sessionAttributes": {}
   }
-
+```
 
 Update: I have extended the project usnig the Jovo framwork, which means that the application is now cross-platform (can be run on both the Alexa and Google home platforms). Some minor bugs were fixed as well.
