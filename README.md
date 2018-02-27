@@ -1,93 +1,18 @@
-[![Jovo Framework](https://www.jovo.tech/img/github-logo.png)](https://www.jovo.tech)
+Alexa_Skills_Kit_Proofreading
+This is a simple Alexa Skills Kit that proofreads English sentences and paragraphs.
 
-<p align="center">Sample Voice App for the <a href="https://github.com/jovotech/jovo-framework-nodejs">Jovo Framework</a> ⭐️</p>
+To open this application, say: Alexa, open profreading
 
-<p align="center">
-<a href="https://www.jovo.tech/framework/docs/"><strong>Documentation</strong></a> -
-<a href="https://github.com/jovotech/jovo-cli"><strong>CLI </strong></a> - <a href="https://github.com/jovotech/jovo-templates"><strong>Templates </strong></a> -<a href="https://github.com/jovotech/jovo-framework-nodejs/blob/master/CONTRIBUTING.md"><strong>Contributing</strong></a> - <a href="https://twitter.com/jovotech"><strong>Twitter</strong></a></p>
-<br/>
+To use this application to proofread your sentence(s), you can say: proofread {your sentence}.
 
-# Sample Voice App for Jovo
+The application will send the correction(s) to the Alexa app on your phone (In the form of cards). It just makes it easier for you to see the mistakes in your sentences.
 
-```javascript
-app.setHandler({
-    'LAUNCH': function() {
-        this.toIntent('HelloWorldIntent');
-    },
+You do not need an API key to use this application. The API I used in this app (http://wiki.languagetool.org/public-http-api) is a free service. I also used AWS lambda to run the code.
 
-    'HelloWorldIntent': function() {
-        this.ask('Hello World! What is your name?', 'Please tell me your name.');
-    },
+proofread-pic
 
-    'MyNameIsIntent': function(name) {
-        this.tell('Hey ' + name + ', nice to meet you!');
-    },
-});
-```
+Service Requestion (Example):
 
-[Jovo](https://www.jovo.tech "Jovo's website") is a development framework for cross-platform voice apps. Use this repository as a starting point to create a voice application for Amazon Alexa and Google Assistant.
-
-> 🚀 Join our newsletter for free courses on voice app development: www.jovo.tech/newsletter 
-
-<<<<<<< HEAD
-## Table of Contents
-
-* [Getting Started](#getting-started)
-* [Tutorials](#tutorials)
-* [How to Contribute](#how-to-contribute)
-
-
-## Getting Started
-
-In this guide, you will learn how to create a "Hello World" voice app for both Amazon Alexa and Google Assistant.
-
-### Install the Jovo CLI
-
-The [Jovo CLI](https://github.com/jovotech/jovo-cli) is the best way to get started with Jovo development:
-
-```sh
-$ npm install -g jovo-cli
-```
-
-To learn more, please find the [Getting Started Guide](https://www.jovo.tech/framework/docs/installation) in the Jovo Framework Docs.
-
-### Create a new Project
-
-```sh
-$ jovo new <directory>
-```
-
-This will clone the Jovo Sample Voice App into a new directory with a name specified by you.
-
-### Configure your App
-
-You can configure the app and add to its logic in the `app` folder, where you can find a file [`app.js`](./app/app.js), which looks like this:
-
-```javascript
-'use strict';
-
-// =================================================================================
-// App Configuration
-// =================================================================================
-
-const {App} = require('jovo-framework');
-
-const config = {
-    logging: true,
-};
-
-const app = new App(config);
-
-
-// =================================================================================
-// App Logic
-// =================================================================================
-
-app.setHandler({
-    'LAUNCH': function() {
-        this.toIntent('HelloWorldIntent');
-=======
-```
 {
   "session": {
     "new": true,
@@ -134,101 +59,41 @@ app.setHandler({
   "version": "1.0"
 } 
 
-```
-
-
 Service Request (Example):
-```
+
 {
   "version": "1.0",
   "response": {
     "outputSpeech": {
       "text": "I have sent the correction to the alexa application on your phone. Thank you for using this application.",
       "type": "PlainText"
->>>>>>> 24262f3c3bbfa1b1fb3578e6cfbdd1a5c40c438c
     },
-
-    'HelloWorldIntent': function() {
-        this.ask('Hello World! What is your name?', 'Please tell me your name.');
+    "card": {
+      "content": "->This sentence does not start with an uppercase letter\n->Possible spelling mistake found\n",
+      "title": "Correction of: today are very weid"
     },
-
-    'MyNameIsIntent': function(name) {
-        this.tell('Hey ' + name + ', nice to meet you!');
+    "reprompt": {
+      "outputSpeech": {
+        "text": "is there anything that I can help you?",
+        "type": "PlainText"
+      }
     },
-});
-
-module.exports.app = app;
-```
-
-### Configure the Language Model
-
-You can change the language model in the `/models`folder and can use the [Jovo CLI](https://github.com/jovotech/jovo-cli) to build platform specific language models into a new `/platforms` folder, and then deploy the language model to the platforms.
-
-For example, you can do it like so:
-
-```sh
-# Initialize a Platform (alexaSkill or googleAction)
-$ jovo init alexaSkill
-
-# Build platform specific language model into /platforms
-$ jovo build
-
-# Deploy language model
-$ jovo deploy
-```
-
-There is also a super fast way to do everything at once:
-
-```sh
-# Long version
-$ jovo new <directory> --build alexaSkill --deploy
-
-# Short version
-$ jovo new <directory> -b alexaSkill -d
-```
-
-To find other ways to deploy the language model, please take a look at the tutorials:
-
-* [Build an Alexa Skill with Jovo](https://www.jovo.tech/blog/alexa-skill-tutorial-nodejs/)
-* [Build a Google Action with Jovo](https://www.jovo.tech/blog/google-action-tutorial-nodejs/)
-
-
-
-### Run the Code
-
-The [`index.js`](./index.js) file is responsible for the server configuration.
-
-You can run this template in two ways:
-* Webhook ([docs](https://www.jovo.tech/framework/docs/server/webhook)): Do `$ jovo run` and use a tool like [ngrok](https://www.ngrok.com) to point to the local webhook
-* AWS Lambda ([docs](https://www.jovo.tech/framework/docs/server/aws-lambda)): Zip the folder and upload there
-
-The file looks like this:
-
-```javascript
-'use strict';
-
-const {Webhook} = require('jovo-framework');
-const {app} = require('./app/app.js');
-
-// =================================================================================
-// Server Configuration
-// =================================================================================
-
-if (app.isWebhook()) {
-    const port = process.env.PORT || 3000;
-    Webhook.listen(port, () => {
-        console.log(`Example server listening on port ${port}!`);
-    });
-    Webhook.post('/webhook', (req, res) => {
-        app.handleWebhook(req, res);
-    });
+    "speechletResponse": {
+      "outputSpeech": {
+        "text": "I have sent the correction to the alexa application on your phone. Thank you for using this application."
+      },
+      "card": {
+        "content": "->This sentence does not start with an uppercase letter\n->Possible spelling mistake found\n",
+        "title": "Correction of: today are very weid"
+      },
+      "reprompt": {
+        "outputSpeech": {
+          "text": "is there anything that I can help you?"
+        }
+      },
+      "shouldEndSession": false
+    }
+  },
+  "sessionAttributes": {}
 }
-```
-
 Update: I have extended the project usnig the Jovo framwork, which means that the application is now cross-platform (can be run on both the Alexa and Google home platforms). Some minor bugs were fixed as well.
-
-exports.handler = (event, context, callback) => {
-    app.handleLambda(event, context, callback);
-};
-
-```
